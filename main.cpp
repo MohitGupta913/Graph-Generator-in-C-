@@ -7,7 +7,7 @@ using namespace std;
 
 int main(){
     char fun[10],ch;
-    double i, c, af, ph;
+    double i, c, af, ph, po;
     double pi = 3.14159265;
     int I=0;
     int gd = DETECT;
@@ -22,6 +22,8 @@ int main(){
         cin>>af;
         cout<<"Enter phase in degrees: ";
         cin>>ph;
+        cout<<"Enter power: ";
+        cin>>po;
         while(fun[I]!='\0'){
             char c;
             if(isalpha(fun[I])){
