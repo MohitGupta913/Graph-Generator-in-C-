@@ -45,7 +45,7 @@ int main(){
         if(!strcmp(fun, "sin(x)")){
             for(i=-360;i<=360;i++){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*(sin((af*i*pi+2*ph)/90)*25));
+                int y = int(my/2-c*(sin((af*i+ph/2)*pi/90)*25));
                 putpixel(x, y, WHITE);
                 delay(1);
             }
@@ -53,7 +53,7 @@ int main(){
         else if(!strcmp(fun, "cos(x)")){
             for(i=-360;i<=360;i++){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*(cos((af*i*pi/90)+ph)*25));
+                int y = int(my/2-c*(cos((af*i+ph/2)*pi/90)*25));
                 putpixel(x, y, WHITE);
                 delay(1);
             }
@@ -61,28 +61,28 @@ int main(){
         else if(!strcmp(fun, "tan(x)")){
             for(i=-270;i<=270;i+=0.01){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*(tan((af*i*pi/90)+ph)*25));
+                int y = int(my/2-c*(tan((af*i+ph/2)*pi/90)*25));
                 putpixel(x, y, WHITE);
             }
         }
         else if(!strcmp(fun, "cosec(x)")){
             for(i=-270;i<=270;i+=0.01){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*25/(sin((af*i*pi/90)+ph)));
+                int y = int(my/2-c*25/(sin((af*i+ph/2)*pi/90)));
                 putpixel(x, y, WHITE);
             }
         }
         else if(!strcmp(fun, "sec(x)")){
             for(i=-270;i<=270;i+=0.01){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*25/(cos((af*i*pi/90)+ph)));
+                int y = int(my/2-c*25/(cos((af*i+ph/2)*pi/90)));
                 putpixel(x, y, WHITE);
             }
         }
         else if(!strcmp(fun, "cot(x)")){
             for(i=-270;i<=270;i+=0.01){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*25/(tan((af*i*pi/90)+ph)));
+                int y = int(my/2-c*25/(tan((af*i+ph/2)*pi/90)));
                 putpixel(x, y, WHITE);
             }
         }
