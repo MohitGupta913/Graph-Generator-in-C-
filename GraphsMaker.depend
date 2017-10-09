@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1507477671 source:g:\mohit\c++ graphics\graphsmaker\main.cpp
+	<graphics.h>
+	<iostream>
+	<math.h>
+	<stdio.h>
+	<string.h>
+
