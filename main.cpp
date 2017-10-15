@@ -45,44 +45,44 @@ int main(){
         if(!strcmp(fun, "sin(x)")){
             for(i=-360;i<=360;i++){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*(sin((af*i+ph/2)*pi/90)*25));
+                int y = int(my/2-c*(pow(sin((af*i+ph/2)*pi/90),po)*25));
                 putpixel(x, y, WHITE);
-                delay(1);
+                //delay(1);
             }
         }
         else if(!strcmp(fun, "cos(x)")){
             for(i=-360;i<=360;i++){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*(cos((af*i+ph/2)*pi/90)*25));
+                int y = int(my/2-c*(pow(cos((af*i+ph/2)*pi/90),po)*25));
                 putpixel(x, y, WHITE);
-                delay(1);
+                //delay(1);
             }
         }
         else if(!strcmp(fun, "tan(x)")){
             for(i=-270;i<=270;i+=0.01){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*(tan((af*i+ph/2)*pi/90)*25));
+                int y = int(my/2-c*(pow(tan((af*i+ph/2)*pi/90),po)*25));
                 putpixel(x, y, WHITE);
             }
         }
         else if(!strcmp(fun, "cosec(x)")){
             for(i=-270;i<=270;i+=0.01){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*25/(sin((af*i+ph/2)*pi/90)));
+                int y = int(my/2-c*25/(pow(sin((af*i+ph/2)*pi/90),po)));
                 putpixel(x, y, WHITE);
             }
         }
         else if(!strcmp(fun, "sec(x)")){
             for(i=-270;i<=270;i+=0.01){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*25/(cos((af*i+ph/2)*pi/90)));
+                int y = int(my/2-c*25/(pow(cos((af*i+ph/2)*pi/90),po)));
                 putpixel(x, y, WHITE);
             }
         }
         else if(!strcmp(fun, "cot(x)")){
             for(i=-270;i<=270;i+=0.01){
                 int x = int((mx/2)+i);
-                int y = int(my/2-c*25/(tan((af*i+ph/2)*pi/90)));
+                int y = int(my/2-c*25/(pow(tan((af*i+ph/2)*pi/90),po)));
                 putpixel(x, y, WHITE);
             }
         }
