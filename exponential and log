@@ -1,0 +1,129 @@
+#include <conio.h>
+#include <stdio.h>
+#include<stdlib.h>
+#include <graphics.h>
+#include <math.h>
+#include <iostream.h>
+
+double Lsum(double x, float c[] ,float z[], float p[], float b[], float t)
+{
+	float sum = 0;
+	for(int i=0; i<t; i++)
+	{       if((x+z[i])>0)
+		sum+=c[i]*pow((log(x+z[i])/log(b[i])),p[i]);
+	}
+	if(sum!=0)
+		return sum;
+	else
+		return 1000000;
+}
+
+void Log()
+{
+	int gd = DETECT, gm;
+	float z[20],t,c[20],p[20],b[20],X,Y;
+	initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+	cout<<"Enter the number of terms in the expression : ";
+	cin>>t;
+	for(int u=0; u<t; u++)
+	{
+		cout<<"Enter the value of coefficient of "<<u+1<<" term";
+		cin>>c[u];
+		cout<<"Enter the value of phase of "<<u+1<<" term";
+		cin>>z[u];
+		cout<<"Enter the value of power of "<<u+1<<" term";
+		cin>>p[u];
+		cout<<"Enter the base (should be greater than 0) of "<<u+1<<" term";
+		cin>>b[u];
+	}
+	cout<<"Enter the scale of the graph :- \n1.)For X axis";
+	cin>>X;
+	cout<<"2.)For Y axis : ";
+	cin>>Y;
+	cout<<"Graph ofexpression : "<<endl;
+	for(int k=0; k<t; k++)
+	{
+		cout<<c[k]<<"*(log base"<<b[k]<<"(x+"<<z[k]<<"))^"<<p[k]<<"  +  ";
+	}
+	double mx = getmaxx();
+	double my = getmaxy();
+	line(mx/2, 0, mx/2, my );
+	line(0, my/2, mx, my/2);
+
+	for(double x=-(mx/2); x<mx/2; x+=0.01)
+	{
+		double y =Lsum(x,c,z,p,b,t);
+		putpixel((mx/2 +X*x),(my/2 - Y*y), RED);
+	}
+	getch();
+	closegraph();
+}
+
+double Esum(double x, float A[] ,float c[] ,float z[], float p[], float t)
+{
+	float sum = 0;
+	for(int i=0; i<t; i++)
+		sum+=c[i]*pow(A[i],pow(x,p[i])+z[i]);
+	return sum;
+}
+
+void Exp()
+{
+	int gd = DETECT, gm;
+	float c[20],z[20],p[20],t,A[20],X,Y;
+	initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+	cout<<"Enter the number of terms in the expression : ";
+	cin>>t;
+	for(int u=0; u<t; u++)
+	{
+		cout<<"Enter the value of the variable of "<<u+1<<" term";
+		cin>>A[u];
+		cout<<"Enter the value of coefficient of "<<u+1<<" term";
+		cin>>c[u];
+		cout<<"Enter the value of phase of power of variable of "<<u+1<<" term";
+		cin>>z[u];
+		cout<<"Enter the value of power of x of "<<u+1<<" term";
+		cin>>p[u];
+	}
+	cout<<"Enter the scale of the graph :- \n1.)For X axis";
+	cin>>X;
+	cout<<"2.)For Y axis : ";
+	cin>>Y;
+	cout<<"Graph ofexpression : "<<endl;
+	for(int k=0; k<t; k++)
+	{
+		cout<<c[k]<<"*"<<A[k]<<"^(x^"<<p[k]<<"+"<<z[k]<<")"<<"  +  ";
+	}
+	double mx = getmaxx();
+	double my = getmaxy();
+	line(mx/2, 0, mx/2, my );
+	line(0, my/2, mx, my/2);
+
+	for(double x=-(mx/2); x<mx/2; x+=0.01)
+	{
+		double y =Esum(x,A,c,z,p,t);
+		putpixel((mx/2 +X*x),(my/2 - Y*y), RED);
+	}
+	getch();
+	closegraph();
+}
+
+void main()
+{       int op;
+	char choice;
+	do
+	{
+		cout<<"What function do yu want to choose\n1.)Logarithmic\n2.)Exponential\n3.)Exit";
+		cin>>op;
+		switch(op)
+		{	case 1: Log();
+				break;
+			case 2: Exp();
+				break;
+			case 3: exit(0);
+			default: cout<<"Wrong Choice!!!";
+		}
+		cout<<"Do you want to continue (Y/N) ?";
+		cin>>choice;
+	}while(choice=='y'||choice=='Y');
+}
