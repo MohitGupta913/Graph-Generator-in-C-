@@ -3,8 +3,8 @@
 #include<stdlib.h>
 #include <graphics.h>
 #include <math.h>
-#include <iostream.h>
-
+#include <iostream>
+using namespace std;
 double Lsum(double x, float c[] ,float z[], float p[], float b[], float t)
 {
 	float sum = 0;
@@ -22,7 +22,7 @@ void Log()
 {
 	int gd = DETECT, gm;
 	float z[20],t,c[20],p[20],b[20],X,Y;
-	initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+	initgraph(&gd, &gm, "C:\\TC\\BGI");
 	cout<<"Enter the number of terms in the expression : ";
 	cin>>t;
 	for(int u=0; u<t; u++)
