@@ -111,11 +111,13 @@ void trigo_fun(){
 
         for(float v=-360;v<=360;v=v+0.01){
             int x = int((mx/2)+v);
-            int y=int(my/2);
+            //int y=int(my/2);
+            int y = 0;
             for(j=0;j<s;j++){
-                y = y-get_val(F[j], c[j], af[j], ph[j], po[j], v);
+                y = y+get_val(F[j], c[j], af[j], ph[j], po[j], v);
             }
-            putpixel(x, y, WHITE);
+            //putpixel(x, y, WHITE);
+            putpixel(x, int(my/2-y), WHITE);
         }
         getch();
         closegraph();
