@@ -14,34 +14,42 @@ double f(double x, double*a, int deg){
 
 void polynomial_function(){
 	int deg; double a[100];
-    
-         cout<<"Enter degree of polynomial"<<endl;
-         cin>>deg;
-         
-    for(int i=0; i<=deg; i++){
-	         cout<<"Enter coefficient of x^"<<deg-i<<endl;
-	         cin>>a[i];
-     }
-	   
-	int gd = DETECT, gm;
-	
-	initgraph(&gd, &gm, "c:\\turboc3\\bgi");
-	        cout<<"Graph ofexpression : "<<endl;
 
+	 cout<<"Enter degree of polynomial"<<endl;
+	 cin>>deg;
+
+    for(int i=0; i<=deg; i++){
+		 cout<<"Enter coefficient of x^"<<deg-i<<endl;
+		 cin>>a[i];
+     }
+
+	int gd = DETECT, gm;
+
+	initgraph(&gd, &gm, "c:\\turboc3\\bgi");
+		cout<<"Graph ofexpression : "<<endl;
+		if(a[0]<0){
+		   cout<<"-";
+		}
 	for(int k=0; k<deg; k++){
 	      if(a[k]!=0){
-		    cout<<a[k]<<"x^"<<deg-k<<"  +  ";
+		    cout<<abs(a[k])<<"x^"<<deg-k;
+		    if(a[k+1]<0){
+			cout<<"-";
+		    }
+		    else{
+			cout<<"+";
+		    }
      }
 	}
 	      if(a[deg]!=0){
-	        cout<<a[deg];
+		cout<<abs(a[deg]);
 	}
-            double mx = getmaxx();
-        	double my = getmaxy();
-        	
-	        line(mx/2, 0, mx/2, my );
-	        line(0, my/2, mx, my/2);
-	
+	    double mx = getmaxx();
+		double my = getmaxy();
+
+		line(mx/2, 0, mx/2, my );
+		line(0, my/2, mx, my/2);
+
 	for(double j=-mx/2; j<mx/2; j+=0.01){
 	      double x =0.1*j;
 	      double y = 10*f(x, a, deg);
@@ -59,9 +67,9 @@ void main(){
 		cout<<"1.)Enter Your Polynomial Function\n2.)Exit\nEnter your choice"<<endl;
 		cin>>op;
 		switch(op)
-		{	case 1: polynomial_function();
-				break;
-			case 2: exit(0);
+		{	case 1:  polynomial_function();
+				 break;
+			case 2:  exit(0);
 			default: cout<<"Wrong Choice!!!";
 		}
 		cout<<"Do you want to continue (Y/N) ?";
