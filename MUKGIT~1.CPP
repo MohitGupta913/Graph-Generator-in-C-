@@ -68,7 +68,7 @@ void polynomial :: drawgraph()
 
 	int gd = DETECT, gm;
 
-	initgraph(&gd, &gm, "c:\\turboc3\\bgi");
+	initgraph(&gd, &gm, "c:\\tc\\bgi");
 		cout<<"Graph of expression : "<<endl;
 		if(a[0]<0){
 		   cout<<"-";
@@ -101,7 +101,7 @@ void polynomial :: drawgraph()
 	for(double j=-mx/2; j<mx/2; j+=0.01){
 	      double x =0.1*j;
 	      double y = 10*draw(x,this);
-	      putpixel(mx/2 + j, my/2 - y, GREEN);
+	      putpixel(mx/2 + j, my/2 - y, WHITE);
 	}
 
 	getch();
@@ -198,7 +198,7 @@ void trigo :: drawgraph()
 	    }
 	}
 
-	char p[]="C:\\turboc3\\BGI";
+	char p[]="C:\\tc\\BGI";
 	initgraph(&gd, &gm, p);
 	int mx = getmaxx();
 	int my = getmaxy();
@@ -220,7 +220,7 @@ void trigo :: drawgraph()
 	    {
 		y = y+draw(v,this,j);
 	    }
-	    putpixel(x, int(my/2-y), GREEN);
+	    putpixel(x, int(my/2-y), WHITE);
 	}
 	getch();
 	closegraph();
@@ -230,8 +230,8 @@ double draw(double x, lo* l)
 {
 	float sum = 0;
 	for(int i=0; i<l->t; i++)
-	{       if((l->cx[i]*x+l->z[i])>0 && l->b[i]>0 )
-                sum+=l->c[i]*pow((log(l->cx[i]*x+l->z[i])/log(l->b[i])),l->p[i]);
+	{       if(l->b[i]>0 )
+		sum+=l->c[i]*pow((log(l->cx[i]*x+l->z[i])/log(l->b[i])),l->p[i]);
 	}
 	if(sum!=0)
 		return sum;
@@ -258,13 +258,19 @@ void lo :: drawgraph()
 		cout<<"Enter the base (should be greater than 0) of "<<u+1<<" term (b) ";
 		cin>>b[u];
 	}
-	cout<<"Enter the scale of the graph :- \n1.)For X axis :  ";
+	cout<<"Enter the scale of the graph :- \n1.)For X axis :   ";
 	cin>>X;
 	cout<<"2.)For Y axis :   ";
 	cin>>Y;
+	float temp=0;
+	temp = z[0]/cx[0];
+	for(int pk = 0;pk<t;pk++){
+	if((z[pk]/cx[pk])<temp)
+	    temp = z[pk]/cx[pk];
+	}
 	int gd = DETECT, gm;
-	initgraph(&gd, &gm, "C:\\turboc3\\BGI");
-	cout<<"Graph ofexpression : "<<endl;
+	initgraph(&gd, &gm, "C:\\tc\\BGI");
+	cout<<"Graph of expression : "<<endl;
 	for(int k=0; k<t; k++)
 	{       if(k>=1)
 			cout<<" + ";
@@ -284,10 +290,10 @@ void lo :: drawgraph()
 	line(mx, my/2, mx-5, my/2-5);
 	line(mx, my/2, mx-5, my/2+5);
 
-	for(double x=-(mx/2); x<mx/2; x+=0.001)
+	for(double x=-temp; x<mx/2; x+=0.001)
 	{
 		double y =draw(x,this);
-		putpixel((mx/2 +X*x),(my/2 - Y*y), RED);
+		putpixel((mx/2 +X*x),(my/2 - Y*y), WHITE);
 	}
 	getch();
 	closegraph();
@@ -297,7 +303,9 @@ double  draw(double x, ex* e)
 {
 	float sum = 0;
 	for(int i=0; i<e->t; i++)
+	{	if(pow(e->cx[i]*x,e->p[i])<100)
 		sum+=e->c[i]*pow(e->b[i],pow(e->cx[i]*x,e->p[i])+e->z[i]);
+	}
 	return sum;
 }
 
@@ -315,7 +323,7 @@ void ex :: drawgraph()
 		cin>>c[u];
 		cout<<"Enter the value of phase of power of variable of "<<u+1<<" term (s) ";
 		cin>>z[u];
-		cout<<"Enter the value of cofficient of x of "<<u+1<<" term (z) ";
+		cout<<"Enter the value of coefficient of x of "<<u+1<<" term (z) ";
 		cin>>cx[u];
 		cout<<"Enter the value of power of x of "<<u+1<<" term (p) ";
 		cin>>p[u];
@@ -325,7 +333,7 @@ void ex :: drawgraph()
 	cout<<"2.)For Y axis :   ";
 	cin>>Y;
 	int gd = DETECT, gm;
-	initgraph(&gd, &gm, "C:\\turboc3\\BGI");
+	initgraph(&gd, &gm, "C:\\tc\\BGI");
 	cout<<"Graph of expression : "<<endl;
 	for(int k=0; k<t; k++)
 	{       if(k>=1)
@@ -346,10 +354,10 @@ void ex :: drawgraph()
 	line(mx, my/2, mx-5, my/2-5);
 	line(mx, my/2, mx-5, my/2+5);
 
-	for(double x=-(mx/2); x<mx/2; x+=0.0001)
+	for(double x=-100; x<100; x+=0.001)
 	{
 		double y =draw(x,this);
-		putpixel((mx/2 +X*x),(my/2 - Y*y), RED);
+		putpixel((mx/2 +X*x),(my/2 - Y*y), WHITE);
 	}
 	getch();
 	closegraph();
@@ -365,7 +373,7 @@ void main()
 	{
 		cout<<"\n\n           -----------------------------------------------------------\n                              GRAPH GENERATOR IN C++\n           -----------------------------------------------------------\n"<<endl;
 		cout<<"--------------------------------------\n";
-		cout<<"Which function's graph you want to see\n1.)Logarithmic\n2.)Exponential\n3.)Polynomial\n4.)Trigonomertric\n5.)Exit";
+		cout<<"Which function's graph you want to see\n1.)Logarithmic\n2.)Exponential\n3.)Polynomial\n4.)Trigonometric\n5.)Exit";
 		cout<<"\n--------------------------------------"<<endl;
 		cout<<"\n";
 		cin>>op;
@@ -384,5 +392,6 @@ void main()
 		}
 		cout<<"Do you want to continue (Y/N) ?\n";
 		cin>>choice;
+		clrscr();
 	}while(choice=='y'||choice=='Y');
 }
