@@ -1,11 +1,4 @@
-#include <conio.h>
-#include <ctype.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <graphics.h>
-#include <math.h>
-#include <iostream.h>
+#include <bits/stdc++.h>
 #define pi 3.14159265
 class DrawGraph{
 	public:
