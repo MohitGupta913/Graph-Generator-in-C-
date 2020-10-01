@@ -17,32 +17,31 @@ class polynomial : public DrawGraph{
 
 class trigo : public DrawGraph{
          char fun[10];     //trig
-	     int F[100];
-	     double ct[100], af[100], ph[100], po[100];
+	 int F[100];
+	 double ct[100], af[100], ph[100], po[100];
 	public:
-	     void drawgraph();
-	     friend void check_fun(int i, trigo* t);
-	     friend int draw(int i, trigo* t,int j);
+	 void drawgraph();
+	 friend void check_fun(int i, trigo* t);
+	 friend int draw(int i, trigo* t,int j);
 };
 
 
 class lo : public DrawGraph{
-	     float z[20],t,c[20],p[20],b[20],cx[20],X,Y;
+	float z[20],t,c[20],p[20],b[20],cx[20],X,Y;
 	public:
-		 friend double draw(double x, lo* l);
-	     void drawgraph();
+	friend double draw(double x, lo* l);
+	void drawgraph();
 };
 
 class ex : public DrawGraph{
-	     float z[20],t,c[20],p[20],b[20],cx[20],X,Y;
+	 float z[20],t,c[20],p[20],b[20],cx[20],X,Y;
 	public:
-	     friend double draw(double x, ex* e);
-	     void drawgraph();
+	 friend double draw(double x, ex* e);
+	 void drawgraph();
 };
 
 
-double draw(double x,polynomial* p)
-{
+double draw(double x,polynomial* p){
    float sum = 0;
    for(int i=0; i<=p->deg; i++){
 	    sum+=p->a[i] * pow(x, (p->deg-i));
@@ -50,11 +49,9 @@ double draw(double x,polynomial* p)
    return sum;
 }
 
-void polynomial :: drawgraph()
-{
-	 cout<<"Enter degree of polynomial"<<endl;
-	 cin>>deg;
-
+void polynomial :: drawgraph(){
+    cout<<"Enter degree of polynomial"<<endl;
+    cin>>deg;
     for(int i=0; i<=deg; i++){
 		 cout<<"Enter coefficient of x^"<<deg-i<<endl;
 		 cin>>a[i];
@@ -102,8 +99,7 @@ void polynomial :: drawgraph()
 	closegraph();
 }
 
-void check_fun(int i, trigo* t)
-{
+void check_fun(int i, trigo* t){
     if(!strcmp(t->fun, "sin")){
 	t->F[i]=1;
     }
@@ -126,8 +122,7 @@ void check_fun(int i, trigo* t)
 	t->F[i]=-1;
     }
 }
-int draw(int i, trigo* t,int j)
-{
+int draw(int i, trigo* t,int j){
     int y;
     switch(t->F[j]){
     case 1:
@@ -151,8 +146,7 @@ int draw(int i, trigo* t,int j)
     }
     return y;
 }
-void trigo :: drawgraph()
-{
+void trigo :: drawgraph(){
 	int i,s,j=0;
 	int gd = DETECT;
 	int gm;
