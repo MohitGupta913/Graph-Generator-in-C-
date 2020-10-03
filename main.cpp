@@ -44,7 +44,7 @@ class ex : public DrawGraph{
 double draw(double x,polynomial* p){
    float sum = 0;
    for(int i=0; i<=p->deg; i++){
-	    sum+=p->a[i] * pow(x, (p->deg-i));
+	sum+=p->a[i] * pow(x, (p->deg-i));
     }
    return sum;
 }
@@ -57,22 +57,22 @@ void polynomial :: drawgraph(){
 		 cin>>a[i];
      }
 
-	int gd = DETECT, gm;
+     int gd = DETECT, gm;
 
-	initgraph(&gd, &gm, "c:\\tc\\bgi");
-		cout<<"Graph of expression : "<<endl;
-		if(a[0]<0){
-		   cout<<"-";
-		}
-	for(int k=0; k<deg; k++){
-	      if(a[k]!=0){
-		    cout<<abs(a[k])<<"x^"<<deg-k;
-		    if(a[k+1]<0){
-			cout<<"-";
-		    }
-		    else{
-			cout<<"+";
-		    }
+     initgraph(&gd, &gm, "c:\\tc\\bgi");
+	cout<<"Graph of expression : "<<endl;
+	if(a[0]<0){
+	   cout<<"-";
+	}
+     for(int k=0; k<deg; k++){
+      if(a[k]!=0){
+	    cout<<abs(a[k])<<"x^"<<deg-k;
+	    if(a[k+1]<0){
+		cout<<"-";
+	    }
+	    else{
+		cout<<"+";
+	    }
      }
 	}
 	      if(a[deg]!=0){
